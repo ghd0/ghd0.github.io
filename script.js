@@ -537,3 +537,14 @@ document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}
 window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 });
+function checkDeviceAndRedirect() {
+  const isLargeDevice = window.innerWidth >= 768;
+  if (isLargeDevice && !window.location.pathname.includes('index2.html')) {
+    window.location.href = 'index2.html';
+  }
+  if (!isLargeDevice && window.location.pathname.includes('index2.html')) {
+    window.location.href = 'index.html';
+  }
+}
+window.addEventListener('DOMContentLoaded', checkDeviceAndRedirect);
+window.addEventListener('resize', checkDeviceAndRedirect);
